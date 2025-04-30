@@ -1,35 +1,42 @@
 package dev.realism.productstore.productlistscreen.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dev.realism.productstore.core.data.source.local.LocalDataSource
 import dev.realism.productstore.core.domain.model.ProductItem
 import dev.realism.productstore.core.domain.repository.LocalDataSourceRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProductListScreenViewModel @Inject constructor(val repository: LocalDataSourceRepository):ViewModel(),LocalDataSource {
-    var counts = 0
-    override fun getAllProductItems(): Flow<List<ProductItem>> {
-        counts++
-        Log.d("VIEWMODEL","Запросов: $counts")
-       return repository.getAllProductItemsFlow()
+class ProductListScreenViewModel @Inject constructor(val repository: LocalDataSourceRepository) :
+    ViewModel(), LocalDataSource {
+    private var _productList = MutableStateFlow<List<ProductItem>>(emptyList())
+    val productList: StateFlow<List<ProductItem>> = _productList
+
+    init {
+        updateProductList()
     }
 
-    override fun getProductItemByIdFlow(id: Int): Flow<ProductItem> {
-        TODO("Not yet implemented")
+    fun updateProductList(searchQuery: String = "") {
+        viewModelScope.launch {
+            getAllProductItems(searchQuery).collect {
+                _productList.value = it
+            }
+        }
     }
 
-    override suspend fun addProductItem(productItem: ProductItem) {
-        TODO("Not yet implemented")
+    override suspend fun getAllProductItems(searchQuery: String): Flow<List<ProductItem>> {
+        return repository.getAllProductItemsFlow(searchQuery)
     }
 
     override suspend fun updateProductItem(productItem: ProductItem) {
-        TODO("Not yet implemented")
+        repository.updateProductItem(productItem)
     }
 
     override suspend fun deleteProductItem(productItem: ProductItem) {
-        TODO("Not yet implemented")
+        repository.deleteProductItem(productItem)
     }
-
 }

@@ -9,14 +9,8 @@ import javax.inject.Inject
 class LocalDataSourceRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource,
 ) : LocalDataSourceRepository {
-    override fun getAllProductItemsFlow(): Flow<List<ProductItem>> =
-        localDataSource.getAllProductItems()
-
-    override fun getProductItemByIdFlow(id: Int): Flow<ProductItem> =
-        localDataSource.getProductItemByIdFlow(id)
-
-    override suspend fun addProductItem(productItem: ProductItem) =
-        localDataSource.addProductItem(productItem)
+    override suspend fun getAllProductItemsFlow(searchQuery: String): Flow<List<ProductItem>> =
+        localDataSource.getAllProductItems(searchQuery)
 
     override suspend fun updateProductItem(productItem: ProductItem) =
         localDataSource.updateProductItem(productItem)

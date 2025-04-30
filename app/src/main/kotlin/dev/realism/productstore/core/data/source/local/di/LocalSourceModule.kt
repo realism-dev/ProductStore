@@ -1,7 +1,6 @@
 package dev.realism.productstore.core.data.source.local.di
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
 import dagger.Binds
 import dagger.Module
@@ -21,18 +20,28 @@ class LocalSourceModuleProvider {
     @Provides
     @Singleton
     fun providesLocalDatabase(context: Context): ProductStoreRoomDatabase {
-        Log.d("DATABASE", "SUCCESS")
+        // Получаем путь к базе данных
+        val dbFile = context.getDatabasePath("ip-test-task")
+        // Проверяем, существует ли база данных
+        if (!dbFile.exists()) {
+            return Room.databaseBuilder(
+                context,
+                ProductStoreRoomDatabase::class.java,
+                "ip-test-task"
+            ).fallbackToDestructiveMigration()
+             .createFromAsset("data.db")
+             .build()
+        }
         return Room.databaseBuilder(
             context,
             ProductStoreRoomDatabase::class.java,
             "ip-test-task"
         ).fallbackToDestructiveMigration()
-            .createFromAsset("data.db")
-            .build()
+         .build()
     }
 }
 
-
+//
 @Module
 abstract class LocalSourceModuleBinder {
     @Binds

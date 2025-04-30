@@ -12,20 +12,10 @@ class RoomLocalDataSource @Inject constructor(
     private val productItemDao: ProductItemDao
 ) : LocalDataSource {
 
-    override fun getAllProductItems(): Flow<List<ProductItem>> {
-        return productItemDao.getAllProductItems().map { productItemEntityList ->
+    override suspend fun getAllProductItems(searchQuery: String): Flow<List<ProductItem>> {
+        return productItemDao.getAllProductItems(searchQuery).map { productItemEntityList ->
                 productItemEntityList.map { productItemEntity -> productItemEntity.toProductItem() }
             }
-    }
-
-    override fun getProductItemByIdFlow(id: Int): Flow<ProductItem> {
-        return productItemDao.getProductItemById(id).map { productItemEntity ->
-            productItemEntity.toProductItem()
-        }
-    }
-
-    override suspend fun addProductItem(productItem: ProductItem) {
-        productItemDao.insertProductItem(productItem.toProductItemEntity())
     }
 
     override suspend fun deleteProductItem(productItem: ProductItem) {

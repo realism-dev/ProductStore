@@ -4,5 +4,5 @@ import dev.realism.productstore.core.domain.model.ProductItem
 import kotlinx.coroutines.flow.Flow
 
 interface GetAllProductItemsUseCase {
-    fun getAllProductItems(): Flow<List<ProductItem>>
+    suspend fun getAllProductItems(searchQuery: String): Flow<List<ProductItem>>
 }

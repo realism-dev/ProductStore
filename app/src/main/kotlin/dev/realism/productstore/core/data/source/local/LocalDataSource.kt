@@ -4,9 +4,7 @@ import dev.realism.productstore.core.domain.model.ProductItem
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
-    fun getAllProductItems(): Flow<List<ProductItem>>
-    fun getProductItemByIdFlow(id: Int): Flow<ProductItem>
-    suspend fun addProductItem(productItem: ProductItem)
+    suspend fun getAllProductItems(searchQuery: String = ""): Flow<List<ProductItem>>
     suspend fun updateProductItem(productItem: ProductItem)
     suspend fun deleteProductItem(productItem: ProductItem)
 }

@@ -2,7 +2,6 @@ package dev.realism.productstore.core.data.source.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
-import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import dev.realism.productstore.core.data.source.local.model.ProductItemEntity
@@ -10,14 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductItemDao {
-    @Query("SELECT * FROM item")
-    fun getAllProductItems(): Flow<List<ProductItemEntity>>
-
-    @Query("SELECT * FROM item WHERE id=:id")
-    fun getProductItemById(id: Int): Flow<ProductItemEntity>
-
-    @Insert
-    suspend fun insertProductItem(productItemEntity: ProductItemEntity)
+    @Query("SELECT * FROM item WHERE name LIKE '%' || :searchQuery || '%'")
+    fun getAllProductItems(searchQuery: String): Flow<List<ProductItemEntity>>
 
     @Update
     suspend fun updateProductItem(productItemEntity: ProductItemEntity)

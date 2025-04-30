@@ -37,10 +37,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Баг с инверсией цветов в темной теме в MIUI
     @RequiresApi(Build.VERSION_CODES.Q)
     @Suppress("DEPRECATION")
     private fun setMIUISettings() {
-        Log.d("VIEWMODEL", "IS MIUI")
+        Log.d("MainActivity", "IS MIUI")
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.blue)
         window.isNavigationBarContrastEnforced = false

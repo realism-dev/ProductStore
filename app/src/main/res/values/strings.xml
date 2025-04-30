@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Product Store</string>
+    <string name="search_product_leading_ic_cd">Search product</string>
+    <string name="search_hint">Поиск товаров</string>
+    <string name="search_product_trailing_ic_cd">Clear text</string>
+    <string name="search_box_label_at_top">Поиск товаров</string>
+    <string name="alert_cancel_text">Отмена</string>
+    <string name="alert_accept_text">Принять</string>
+    <string name="products_count_ic_cd">Products count</string>
+    <string name="products_amount_text">Количество товара</string>
+    <string name="edit_cd">Edit</string>
+    <string name="delete_cd">Delete</string>
+    <string name="on_warehouse_text">На складе</string>
+    <string name="add_date_text">Дата добавления</string>
+    <string name="count_zero_text">Нет в наличии</string>
+    <string name="product_list_text">Список товаров</string>
+    <string name="remove_dialog_no_text">Нет</string>
+    <string name="remove_dialog_yes_text">Да</string>
+    <string name="remove_product_text">Удаление товара</string>
+    <string name="remove_product_question">Вы действительно хотите удалить выбранный товар?</string>
 </resources>
