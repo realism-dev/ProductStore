@@ -9,3 +9,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/release/baselineProfiles/0/ip-test-task.dm
+/app/release/baselineProfiles/1/ip-test-task.dm
+/app/release/output-metadata.json

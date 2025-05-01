@@ -31,19 +31,19 @@ class AppModule(private val appContext: Context) {
 
     @Provides
     @Singleton
-    fun bindDeleteProductItemUseCase(repository: LocalDataSourceRepository): DeleteProductItemUseCase {
+    fun provideDeleteProductItemUseCase(repository: LocalDataSourceRepository): DeleteProductItemUseCase {
         return DeleteProductItemUseCaseImpl(repository)
     }
 
     @Provides
     @Singleton
-    fun bindGetAllProductItemsUseCase(repository: LocalDataSourceRepository): GetAllProductItemsUseCase {
+    fun provideGetAllProductItemsUseCase(repository: LocalDataSourceRepository): GetAllProductItemsUseCase {
         return GetAllProductItemsUseCaseImpl(repository)
     }
 
     @Provides
     @Singleton
-    fun bindUpdateProductItemUseCase(repository: LocalDataSourceRepository): UpdateProductItemUseCase {
+    fun provideUpdateProductItemUseCase(repository: LocalDataSourceRepository): UpdateProductItemUseCase {
         return UpdateProductItemUseCaseImpl(repository)
     }
 }

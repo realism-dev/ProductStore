@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import dev.realism.productstore.core.data.source.local.dao.ProductItemDao
 import dev.realism.productstore.core.data.source.local.model.ProductItemEntity
 
-@Database(entities = [ProductItemEntity::class], version = 1)
+@Database(entities = [ProductItemEntity::class], version = 1, exportSchema = false)
 abstract class ProductStoreRoomDatabase: RoomDatabase() {
     abstract fun productItemDao() : ProductItemDao
 }

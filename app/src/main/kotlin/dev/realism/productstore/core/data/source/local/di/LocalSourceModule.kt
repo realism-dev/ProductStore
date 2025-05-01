@@ -20,28 +20,25 @@ class LocalSourceModuleProvider {
     @Provides
     @Singleton
     fun providesLocalDatabase(context: Context): ProductStoreRoomDatabase {
-        // Получаем путь к базе данных
         val dbFile = context.getDatabasePath("ip-test-task")
-        // Проверяем, существует ли база данных
         if (!dbFile.exists()) {
             return Room.databaseBuilder(
-                context,
-                ProductStoreRoomDatabase::class.java,
-                "ip-test-task"
-            ).fallbackToDestructiveMigration()
+                        context,
+                        ProductStoreRoomDatabase::class.java,
+                        "ip-test-task"
+                    ).fallbackToDestructiveMigration(false)
              .createFromAsset("data.db")
              .build()
         }
         return Room.databaseBuilder(
-            context,
-            ProductStoreRoomDatabase::class.java,
-            "ip-test-task"
-        ).fallbackToDestructiveMigration()
+                context,
+                ProductStoreRoomDatabase::class.java,
+                "ip-test-task"
+            ).fallbackToDestructiveMigration(false)
          .build()
     }
 }
 
-//
 @Module
 abstract class LocalSourceModuleBinder {
     @Binds
