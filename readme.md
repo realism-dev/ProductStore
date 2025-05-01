@@ -47,6 +47,7 @@ git clone https://github.com/realism-dev/productstore.git
 Нажмите Run в Android Studio.
 
 ## Установка из .apk файла:
-В корень репозитория выложено скомпилированное production приложение ip-test-task.apk
+В корень репозитория выложено скомпилированное production приложение ip-test-task.apk.
+[Скачайте](https://github.com/realism-dev/ProductStore/blob/master/ip-test-task.apk) и установите на свой android-смартфон.
 
 ## [MIT License](https://github.com/realism-dev/ProductStore/blob/master/LICENSE)
