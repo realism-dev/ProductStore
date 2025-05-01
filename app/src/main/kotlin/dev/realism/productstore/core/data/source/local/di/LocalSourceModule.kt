@@ -21,21 +21,19 @@ class LocalSourceModuleProvider {
     @Singleton
     fun providesLocalDatabase(context: Context): ProductStoreRoomDatabase {
         val dbFile = context.getDatabasePath("ip-test-task")
+        val databaseBuilder = Room.databaseBuilder(
+            context,
+            ProductStoreRoomDatabase::class.java,
+            "ip-test-task"
+        ).fallbackToDestructiveMigration(false)
+
         if (!dbFile.exists()) {
-            return Room.databaseBuilder(
-                        context,
-                        ProductStoreRoomDatabase::class.java,
-                        "ip-test-task"
-                    ).fallbackToDestructiveMigration(false)
-             .createFromAsset("data.db")
-             .build()
+            return databaseBuilder
+                .createFromAsset("data.db")
+                .build()
         }
-        return Room.databaseBuilder(
-                context,
-                ProductStoreRoomDatabase::class.java,
-                "ip-test-task"
-            ).fallbackToDestructiveMigration(false)
-         .build()
+        return databaseBuilder
+            .build()
     }
 }
 
