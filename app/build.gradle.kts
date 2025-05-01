@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -19,7 +21,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -27,8 +28,21 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            applicationVariants.all {
+                outputs.all { output ->
+                    if (output is BaseVariantOutputImpl) {
+//                        val date = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+//                        val filename = "AppName_${versionName}-${versionCode}_${date}_${name}.apk"
+                        val apkName = "ip-test-task.apk"
+                        output.outputFileName = apkName
+                    }
+                    true
+                }
+            }
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
