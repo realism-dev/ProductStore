@@ -8,7 +8,7 @@ import javax.inject.Inject
 class DeleteProductItemUseCaseImpl @Inject constructor(
     private val localDataSourceRepository: LocalDataSourceRepository
 ) : DeleteProductItemUseCase {
-    override suspend fun deleteProductItem(productItem: ProductItem) {
+    override suspend operator fun invoke(productItem: ProductItem) {
         localDataSourceRepository.deleteProductItem(productItem)
     }
 }

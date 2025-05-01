@@ -8,7 +8,7 @@ import javax.inject.Inject
 class UpdateProductItemUseCaseImpl @Inject constructor(
     private val localDataSourceRepository: LocalDataSourceRepository
 ) : UpdateProductItemUseCase {
-    override suspend fun updateProductItem(productItem: ProductItem) {
+    override suspend operator fun invoke(productItem: ProductItem) {
         localDataSourceRepository.updateProductItem(productItem)
     }
 }

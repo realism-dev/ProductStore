@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetAllProductItemsUseCaseImpl @Inject constructor(
     private val localDataSourceRepository: LocalDataSourceRepository
 ) : GetAllProductItemsUseCase {
-    override suspend fun getAllProductItems(searchQuery: String): Flow<List<ProductItem>> {
+    override suspend operator fun invoke(searchQuery: String): Flow<List<ProductItem>> {
         return localDataSourceRepository.getAllProductItemsFlow(searchQuery)
     }
 }
