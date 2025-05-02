@@ -1,7 +1,7 @@
 *.iml
 .gradle
 /local.properties
-/.idea/
+.idea/
 .DS_Store
 /build
 /captures
@@ -14,3 +14,4 @@ local.properties
 /app/release/output-metadata.json
 /.kotlin/sessions/kotlin-compiler-18268066128191083376.salive
 /app/src/test/
+
